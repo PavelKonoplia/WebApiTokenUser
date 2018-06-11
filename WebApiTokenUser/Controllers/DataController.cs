@@ -8,21 +8,21 @@ namespace WebApiTokenUser.Controllers
 {
     public class DataController : ApiController
     {
-        DataContext _dataContext;
+        DataBaseContext _dbContext;
 
         public DataController()
         {
-            _dataContext = new DataContext();
+            _dbContext = new DataBaseContext();
         }
 
         public IEnumerable<Data> Get()
         {
-            return _dataContext.Data;
+            return _dbContext.Data;
         }
 
         public Data Get(int id)
         {
-            return (Data)_dataContext.Data.Where(u => u.Id == id);
+            return (Data)_dbContext.Data.Where(u => u.Id == id);
         }
     }
 }
