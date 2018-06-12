@@ -16,7 +16,7 @@ namespace WebApiTokenUser.Services
 
         public string Authorize(string login, string password)
         {
-            if (_userContext.GetAll().Where(u => u.Login == login && u.Password == password) != null)
+            if (_userContext.FindBy(u => u.Login == login && u.Password == password) != null)
             {
                 return Convert.ToBase64String(Guid.NewGuid().ToByteArray());
             }

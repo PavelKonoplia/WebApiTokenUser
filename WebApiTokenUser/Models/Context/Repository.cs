@@ -1,97 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
 using System.Linq;
-using System.Reflection;
+using System.Linq.Expressions;
 using WebApiTokenUser.Interfaces;
 
 namespace WebApiTokenUser.Models.Context
 {
-    public class EFDbContext : DbContext
+    public class UserDataContext : DbContext
     {
-        public EFDbContext()
-            : base("DbConnection")
-        {
-        }
-
-        public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
-        {
-            return base.Set<TEntity>();
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()
-           .Where(type => !String.IsNullOrEmpty(type.Namespace))
-           .Where(type => type.BaseType != null && type.BaseType.IsGenericType
-                && type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>));
-            foreach (var type in typesToRegister)
-            {
-                dynamic configurationInstance = Activator.CreateInstance(type);
-                modelBuilder.Configurations.Add(configurationInstance);
-            }
-            base.OnModelCreating(modelBuilder);
-        }
+        public UserDataContext() : base("DbConnection") { }
     }
 
     public class Repository<T> : IRepository<T> where T : class
     {
-        private EFDbContext context;
-        private DbSet<T> dbSet;
+        DbContext _userDataContext;
+        DbSet<T> _dbSet;
 
         public Repository()
         {
-            context = new EFDbContext();
-            dbSet = context.Set<T>();
+            _userDataContext = new UserDataContext();
+            _dbSet = _userDataContext.Set<T>();
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
-            return dbSet.ToList();
+            return _dbSet.AsNoTracking();
         }
 
-        public T GetById(object id)
+        public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
-            return dbSet.Find(id);
+            return _dbSet.Where(predicate);
         }
 
-        public T Insert(T obj)
+        public virtual void Add(T entity)
         {
-            dbSet.Add(obj);
-            Save();
-            return obj;
-        }
-
-        public void Delete(object id)
-        {
-            T entityToDelete = dbSet.Find(id);
-            Delete(entityToDelete);
-        }
-
-        public T Update(T obj)
-        {
-            dbSet.Attach(obj);
-            context.Entry(obj).State = EntityState.Modified;
-            Save();
-            return obj;
-        }
-
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (context != null)
-                {
-                    context.Dispose();
-                    context = null;
-                }
-            }
+            _dbSet.Add(entity);
+            _userDataContext.SaveChanges();
         }
     }
 }

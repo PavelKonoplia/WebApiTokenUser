@@ -2,11 +2,9 @@
 
 namespace WebApiTokenUser.Models.Context
 {
-    public class DataBaseContext: DbContext
+    public class DatabaseContext: DbContext
     {
-        public DataBaseContext()
-            : base("DbConnection")
-        { }
+        public DatabaseContext() : base("DbConnection") { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Data> Data { get; set; }

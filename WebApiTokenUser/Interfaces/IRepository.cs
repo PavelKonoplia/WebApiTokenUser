@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace WebApiTokenUser.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetItems();
+        IQueryable<T> GetAll();
 
-        T GetItemById(int itemId);
+        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
 
-        int Create(T item);
-
-        void Update(T item);
-
-        void Delete(int itemId);
+        void Add(T item);
     }
 }

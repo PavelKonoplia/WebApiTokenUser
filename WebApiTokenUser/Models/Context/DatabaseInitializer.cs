@@ -3,9 +3,9 @@ using System.Data.Entity;
 
 namespace WebApiTokenUser.Models.Context
 {
-    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<DataBaseContext>
+    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<DatabaseContext>
     {
-        protected override void Seed(DataBaseContext context)
+        protected override void Seed(DatabaseContext context)
         {
             base.Seed(context);
 
@@ -13,14 +13,14 @@ namespace WebApiTokenUser.Models.Context
             User user = new User
             {
                 Name = "Nick",
-                Loggin = "Nick",
+                Login = "Nick",
                 Password = "qwerty"
             };
             context.Users.Add(user);
             User user2 = new User
             {
                 Name = "Jack",
-                Loggin = "Jack",
+                Login = "Jack",
                 Password = "qwerty"
             };
             context.Users.Add(user2);

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using WebApiTokenUser.Interfaces;
 using WebApiTokenUser.Models;
 using WebApiTokenUser.Models.Context;
 
@@ -8,32 +9,30 @@ namespace WebApiTokenUser.Controllers
 {
     public class UserController : ApiController
     {
-        UserContext _userContext;
+        IRepository<User> _userContext;
 
         public UserController() {
-            _userContext = new UserContext();
+            _userContext = new Repository<User>();
         }
 
-        public IEnumerable<User> Get()
+        [HttpGet]
+        [Route("api/user")]
+        public IHttpActionResult Get()
         {
-            return _userContext.Users;
+            return Ok(_userContext.GetAll());
         }
 
-        public User Get(string loggin)
+        [HttpGet]
+        [Route("api/user/{login}")]
+        public IHttpActionResult Get(string login)
         {
             
-            return (User)_userContext.Users.Where(u => u.Loggin == loggin);
+            return Ok(_userContext.FindBy(u => u.Login == login));
         }
 
         public void Post([FromBody]User user)
         {
-
-            _userContext.Users.Add(user);
-        }
-        
-        public void Delete(int id)
-        {
-            _userContext.Users.Remove((User)_userContext.Users.Where(u => u.Id == id));
+            _userContext.Add(user);
         }
     }
 }
