@@ -9,7 +9,6 @@ namespace WebApiTokenUser.Models.Context
         {
             base.Seed(context);
 
-
             User user = new User
             {
                 Name = "Nick",
@@ -25,7 +24,6 @@ namespace WebApiTokenUser.Models.Context
             };
             context.Users.Add(user2);
 
-
             Data data = new Data
             {
                 Topic = "Space",
@@ -40,8 +38,6 @@ namespace WebApiTokenUser.Models.Context
             };
 
             context.Data.Add(data2);
-
-
             context.SaveChanges();
         }
     }

@@ -6,11 +6,6 @@ using WebApiTokenUser.Interfaces;
 
 namespace WebApiTokenUser.Models.Context
 {
-    public class UserDataContext : DbContext
-    {
-        public UserDataContext() : base("DbConnection") { }
-    }
-
     public class Repository<T> : IRepository<T> where T : class
     {
         DbContext _userDataContext;
@@ -18,7 +13,7 @@ namespace WebApiTokenUser.Models.Context
 
         public Repository()
         {
-            _userDataContext = new UserDataContext();
+            _userDataContext = new DatabaseContext();
             _dbSet = _userDataContext.Set<T>();
         }
 
