@@ -11,9 +11,9 @@ namespace WebApiTokenUser.Controllers
 
         public DataController()
         {
-            _dataContext = new Repository<Data>();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("api/data")]
         public IHttpActionResult Get()
@@ -21,6 +21,7 @@ namespace WebApiTokenUser.Controllers
             return Ok(_dataContext.GetAll());
         }
 
+       // [Authorize]
         public IHttpActionResult Get(int id)
         {
             return Ok(_dataContext.FindBy(d => d.Id == id));

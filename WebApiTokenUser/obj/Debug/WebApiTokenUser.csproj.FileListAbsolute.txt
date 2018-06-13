@@ -127,3 +127,10 @@ C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Microsoft.AspNet.Identity.EntityFra
 C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Microsoft.Owin.Cors.xml
 C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Microsoft.Owin.Host.HttpListener.xml
 C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Microsoft.Owin.Hosting.xml
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Autofac.dll
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Autofac.Integration.WebApi.dll
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\NLog.dll
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Purplelight.Framework.Autofac.Integration.WebApi.dll
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Autofac.xml
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Autofac.Integration.WebApi.xml
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\NLog.xml

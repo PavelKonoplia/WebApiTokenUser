@@ -13,9 +13,9 @@ namespace WebApiTokenUser.Controllers
         IRepository<User> _userContext;
 
         public UserController() {
-            _userContext = new Repository<User>();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("api/user")]
         public IHttpActionResult Get()
@@ -23,6 +23,7 @@ namespace WebApiTokenUser.Controllers
             return Ok(_userContext.GetAll());
         }
 
+        [Authorize]
         [HttpGet]
         [Route("api/user/{login}")]
         public IHttpActionResult Get(string login)
