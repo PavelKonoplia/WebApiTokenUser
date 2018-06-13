@@ -1,8 +1,8 @@
-﻿using DataAccess.Models.Context;
-using Microsoft.Owin.Security.OAuth;
+﻿using Microsoft.Owin.Security.OAuth;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using DataAccess.Models.Context;
 
 namespace WebApiTokenUser.Services
 {

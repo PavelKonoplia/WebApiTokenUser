@@ -227,9 +227,6 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ApplicationOAuthProvider .cs" />
-    <Compile Include="Services\Authorization.cs" />
-    <Compile Include="Services\AuthorizeException.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -250,13 +247,21 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+    <ProjectReference Include="..\BusinessLogic\WebApiTokenUser.BLL.csproj">
       <Project>{19318a9d-74b0-46ed-aaa6-5b9d2927d522}</Project>
-      <Name>BusinessLogic</Name>
+      <Name>WebApiTokenUser.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+    <ProjectReference Include="..\DataAccess\WebApiTokenUser.DAL.csproj">
       <Project>{79db2153-771e-4903-977e-76937fb89d40}</Project>
-      <Name>DataAccess</Name>
+      <Name>WebApiTokenUser.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebApiTokenUser.Entity\WebApiTokenUser.Entity.csproj">
+      <Project>{6cc027d0-b1af-42a7-ac19-34828d8bbdbb}</Project>
+      <Name>WebApiTokenUser.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebApiTokenUser.Services\WebApiTokenUser.Services.csproj">
+      <Project>{425BED22-02B7-4BB1-90D1-7118A59488B5}</Project>
+      <Name>WebApiTokenUser.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

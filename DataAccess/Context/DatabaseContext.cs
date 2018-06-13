@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using WebApiTokenUser.Entity.Models;
 
 namespace DataAccess.Models.Context
 {

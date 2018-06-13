@@ -44,5 +44,11 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebApiTokenUser.Entity\WebApiTokenUser.Entity.csproj">
+      <Project>{6cc027d0-b1af-42a7-ac19-34828d8bbdbb}</Project>
+      <Name>WebApiTokenUser.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

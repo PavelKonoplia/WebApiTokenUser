@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTokenUser", "WebApiTokenUser\WebApiTokenUser.csproj", "{BFA0DBD9-BD36-406B-AEE4-173B72FCC0CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTokenUser.API", "WebApiTokenUser\WebApiTokenUser.API.csproj", "{BFA0DBD9-BD36-406B-AEE4-173B72FCC0CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{79DB2153-771E-4903-977E-76937FB89D40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTokenUser.DAL", "DataAccess\WebApiTokenUser.DAL.csproj", "{79DB2153-771E-4903-977E-76937FB89D40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{19318A9D-74B0-46ED-AAA6-5B9D2927D522}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTokenUser.BLL", "BusinessLogic\WebApiTokenUser.BLL.csproj", "{19318A9D-74B0-46ED-AAA6-5B9D2927D522}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTokenUser.Entity", "WebApiTokenUser.Entity\WebApiTokenUser.Entity.csproj", "{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTokenUser.Services", "WebApiTokenUser.Services\WebApiTokenUser.Services.csproj", "{425BED22-02B7-4BB1-90D1-7118A59488B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,38 @@ Global
 		{19318A9D-74B0-46ED-AAA6-5B9D2927D522}.Release|x64.Build.0 = Release|Any CPU
 		{19318A9D-74B0-46ED-AAA6-5B9D2927D522}.Release|x86.ActiveCfg = Release|Any CPU
 		{19318A9D-74B0-46ED-AAA6-5B9D2927D522}.Release|x86.Build.0 = Release|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Debug|ARM.Build.0 = Debug|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Debug|x64.Build.0 = Debug|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Debug|x86.Build.0 = Debug|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Release|ARM.Build.0 = Release|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Release|x64.ActiveCfg = Release|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Release|x64.Build.0 = Release|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Release|x86.ActiveCfg = Release|Any CPU
+		{6CC027D0-B1AF-42A7-AC19-34828D8BBDBB}.Release|x86.Build.0 = Release|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Debug|ARM.Build.0 = Debug|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Debug|x64.Build.0 = Debug|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Debug|x86.Build.0 = Debug|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Release|ARM.ActiveCfg = Release|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Release|ARM.Build.0 = Release|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Release|x64.ActiveCfg = Release|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Release|x64.Build.0 = Release|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Release|x86.ActiveCfg = Release|Any CPU
+		{425BED22-02B7-4BB1-90D1-7118A59488B5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

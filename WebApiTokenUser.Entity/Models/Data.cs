@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DataAccess.Models
+namespace WebApiTokenUser.Entity.Models
 {
     public class Data
     {

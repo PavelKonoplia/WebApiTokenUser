@@ -1,6 +1,6 @@
 ﻿using BusinessLogic.Interfaces;
-using DataAccess.Models;
 using System.Web.Http;
+using WebApiTokenUser.Entity.Models;
 
 namespace WebApiTokenUser.Controllers
 {
