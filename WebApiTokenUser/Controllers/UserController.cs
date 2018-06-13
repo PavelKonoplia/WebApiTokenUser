@@ -7,6 +7,7 @@ using WebApiTokenUser.Models.Context;
 
 namespace WebApiTokenUser.Controllers
 {
+    [Authorize]
     public class UserController : ApiController
     {
         IRepository<User> _userContext;
@@ -28,6 +29,12 @@ namespace WebApiTokenUser.Controllers
         {
             
             return Ok(_userContext.FindBy(u => u.Login == login));
+        }
+
+        [Authorize]
+        public IHttpActionResult Authorize()
+        {
+            return Ok("Authorized");
         }
 
         public void Post([FromBody]User user)
