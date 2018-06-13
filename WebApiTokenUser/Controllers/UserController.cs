@@ -5,7 +5,7 @@ using WebApiTokenUser.Entity.Models;
 
 namespace WebApiTokenUser.Controllers
 {
-    [Authorize]
+
     public class UserController : ApiController
     {
         IRepository<User> _userContext;
