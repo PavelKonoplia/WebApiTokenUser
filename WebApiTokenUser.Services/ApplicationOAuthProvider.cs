@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using DataAccess.Models.Context;
+using WebApiTokenUser.DAL;
 
 namespace WebApiTokenUser.Services
 {

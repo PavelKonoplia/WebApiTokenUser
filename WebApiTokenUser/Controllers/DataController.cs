@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Interfaces;
 using System.Web.Http;
+using WebApiTokenUser.DAL;
 using WebApiTokenUser.Entity.Models;
 
 namespace WebApiTokenUser.Controllers
@@ -8,8 +9,9 @@ namespace WebApiTokenUser.Controllers
     {
         IRepository<Data> _dataContext;
 
-        public DataController()
+        public DataController(IRepository<Data> dataContext)
         {
+            _dataContext = dataContext;
         }
 
         [Authorize]
