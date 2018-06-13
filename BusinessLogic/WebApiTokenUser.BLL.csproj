@@ -7,8 +7,8 @@
     <ProjectGuid>{19318A9D-74B0-46ED-AAA6-5B9D2927D522}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogic</RootNamespace>
-    <AssemblyName>BusinessLogic</AssemblyName>
+    <RootNamespace>WebApiTokenUser.BLL</RootNamespace>
+    <AssemblyName>WebApiTokenUser.BLL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
