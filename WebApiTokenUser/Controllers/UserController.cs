@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using BusinessLogic.Interfaces;
+using DataAccess.Models;
 using System.Web.Http;
-using WebApiTokenUser.Interfaces;
-using WebApiTokenUser.Models;
-using WebApiTokenUser.Models.Context;
 
 namespace WebApiTokenUser.Controllers
 {

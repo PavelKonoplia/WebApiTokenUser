@@ -134,3 +134,8 @@ C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Purplelight.Framework.Autofac.Integ
 C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Autofac.xml
 C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\Autofac.Integration.WebApi.xml
 C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\NLog.xml
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\BusinessLogic.dll
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\DataAccess.dll
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\BusinessLogic.pdb
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\DataAccess.pdb
+C:\Repos\WebApiTokenUser\WebApiTokenUser\bin\DataAccess.dll.config

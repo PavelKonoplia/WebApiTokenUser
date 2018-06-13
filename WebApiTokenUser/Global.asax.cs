@@ -1,9 +1,9 @@
-﻿using System.Web.Http;
+﻿using DataAccess.Models.Context;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using WebApiTokenUser.App_Start;
-using WebApiTokenUser.Models.Context;
 
 namespace WebApiTokenUser
 {

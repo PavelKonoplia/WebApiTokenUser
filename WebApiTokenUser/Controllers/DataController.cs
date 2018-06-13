@@ -1,7 +1,6 @@
-﻿using System.Web.Http;
-using WebApiTokenUser.Interfaces;
-using WebApiTokenUser.Models;
-using WebApiTokenUser.Models.Context;
+﻿using BusinessLogic.Interfaces;
+using DataAccess.Models;
+using System.Web.Http;
 
 namespace WebApiTokenUser.Controllers
 {

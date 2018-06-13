@@ -1,11 +1,9 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
-using System.Data.Entity;
+using BusinessLogic.Interfaces;
+using DataAccess.Models.Context;
 using System.Reflection;
 using System.Web.Http;
-using WebApiTokenUser.Interfaces;
-using WebApiTokenUser.Models;
-using WebApiTokenUser.Models.Context;
 
 namespace AutoFacWithWebAPI.App_Start
 {

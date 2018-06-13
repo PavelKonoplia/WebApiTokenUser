@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
-using WebApiTokenUser.Interfaces;
-using WebApiTokenUser.Models;
+using BusinessLogic.Interfaces;
+using DataAccess.Models;
 
 namespace WebApiTokenUser.Services
 {
