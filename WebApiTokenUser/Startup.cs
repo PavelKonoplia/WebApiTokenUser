@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Reflection;
 using System.Web.Http;
 using WebApiTokenUser.DAL;
+using WebApiTokenUser.Entity.Models;
 using WebApiTokenUser.Services;
 
 
@@ -21,13 +22,7 @@ namespace WebApiTokenUser
         {
             HttpConfiguration config = new HttpConfiguration();
 
-            ConfigureOAuth(app);
-
-            WebApiConfig.Register(config);
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-            app.UseWebApi(config);
-
-//
+            //
             var builder = new ContainerBuilder();
 
             // Register Web API controller in executing assembly.
@@ -38,33 +33,47 @@ namespace WebApiTokenUser
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            builder.RegisterGeneric(typeof(Repository<>))
-                   .As(typeof(IRepository<>))
-                   .InstancePerRequest();
+            builder.RegisterType<DatabaseContext>().As<DbContext>().SingleInstance();
 
-            builder.RegisterType<DatabaseContext>()
-                   .As<DbContext>()
-                   .InstancePerRequest();
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
+
+            // via method
+            //builder.Register(c => {
+            //    var result = new ApplicationOAuthProvider();
+            //    var dep = c.Resolve<Repository<User>>();
+            //    result.GetContext(dep);
+            //    return result; });
+
+            // via property
+            // builder.RegisterType<ApplicationOAuthProvider>().PropertiesAutowired();
+            // builder.Register(c => new ApplicationOAuthProvider()).OnActivated(e => e.Instance.UserContext = e.Context.Resolve<IRepository<User>>());
+            // builder.RegisterType<ApplicationOAuthProvider>().WithProperty("Context", typeof(IRepository<User>));
 
             builder.RegisterWebApiFilterProvider(config);
 
             var container = builder.Build();
+
+            ;
+
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
             app.UseAutofacMiddleware(container);
-            app.UseAutofacWebApi(config);
-
+            app.UseAutofacWebApi(config);          
+            //
+            WebApiConfig.Register(config);
+            ConfigureOAuth(app, container.Resolve<IRepository<User>>());
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
 
-        public void ConfigureOAuth(IAppBuilder app)
+        public void ConfigureOAuth(IAppBuilder app, IRepository<User> repository)
         {
             OAuthAuthorizationServerOptions OAuthserverOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(60),
-                Provider = new ApplicationOAuthProvider()
+                Provider = new ApplicationOAuthProvider(repository)
             };
 
             app.UseOAuthAuthorizationServer(OAuthserverOptions);

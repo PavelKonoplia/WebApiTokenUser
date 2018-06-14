@@ -85,7 +85,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ApplicationOAuthProvider.cs" />
-    <Compile Include="Authorization.cs" />
     <Compile Include="AuthorizeException.cs" />
   </ItemGroup>
   <ItemGroup>
