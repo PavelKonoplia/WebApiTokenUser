@@ -25,8 +25,8 @@ namespace WebApiTokenUser.Services
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var entry = _userContext.FindBy(record => record.Login == context.UserName &&
-            record.Password == context.Password).FirstOrDefault();
+            var entry = _userContext.FindBy(record => record.UserName == context.UserName &&
+            record.PasswordHash == context.Password).FirstOrDefault();
             if (entry == null)
             {
                 context.SetError("invalid_grant",

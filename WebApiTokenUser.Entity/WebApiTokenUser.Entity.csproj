@@ -95,6 +95,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CustomRole.cs" />
+    <Compile Include="Models\CustomUserClaim.cs" />
+    <Compile Include="Models\CustomUserLogin.cs" />
+    <Compile Include="Models\CustomUserRole.cs" />
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

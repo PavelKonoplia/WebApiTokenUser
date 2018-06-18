@@ -15,7 +15,6 @@ namespace WebApiTokenUser.Controllers
             _userContext = userContext;
         }
 
-        [Authorize]
         [HttpGet]
         [Route("api/user")]
         public IHttpActionResult Get()
@@ -27,9 +26,8 @@ namespace WebApiTokenUser.Controllers
         [HttpGet]
         [Route("api/user/{login}")]
         public IHttpActionResult Get(string login)
-        {
-            
-            return Ok(_userContext.FindBy(u => u.Login == login));
+        {            
+            return Ok(_userContext.FindBy(u => u.UserName == login));
         }
 
         [Authorize]
@@ -37,7 +35,9 @@ namespace WebApiTokenUser.Controllers
         {
             return Ok("Authorized");
         }
-
+        
+        [HttpPost]
+        [Route("api/user")]
         public void Post([FromBody]User user)
         {
             _userContext.Add(user);

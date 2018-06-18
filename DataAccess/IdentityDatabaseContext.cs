@@ -4,22 +4,6 @@ using WebApiTokenUser.Entity.Models;
 
 namespace WebApiTokenUser.DAL
 {
-    public class CustomUserStore : UserStore<User, CustomRole, long,
-        CustomUserLogin, CustomUserRole, CustomUserClaim>
-    {
-        public CustomUserStore(IdentityDatabaseContext context)
-            : base(context)
-        {
-        }
-    }
-
-    public class CustomRoleStore : RoleStore<CustomRole, long, CustomUserRole>
-    {
-        public CustomRoleStore(IdentityDatabaseContext context)
-            : base(context)
-        {
-        }
-    }
 
     public class IdentityDatabaseContext : IdentityDbContext<User, CustomRole, long,
         CustomUserLogin, CustomUserRole, CustomUserClaim>
@@ -30,7 +14,7 @@ namespace WebApiTokenUser.DAL
 
         static IdentityDatabaseContext()
         {
-            Database.SetInitializer<IdentityDatabaseContext>(new IdentityDbInit());
+           // Database.SetInitializer<IdentityDatabaseContext>(new IdentityDbInit());
         }
 
         public static IdentityDatabaseContext Create()
@@ -46,7 +30,7 @@ namespace WebApiTokenUser.DAL
                 .ToTable("Users");
         }
     }
-
+    /*
     public class IdentityDbInit : DropCreateDatabaseIfModelChanges<IdentityDatabaseContext>
     {
         protected override void Seed(IdentityDatabaseContext context)
@@ -58,16 +42,14 @@ namespace WebApiTokenUser.DAL
         {
             User user = new User
             {
-                Name = "Nick",
-                Login = "Nick",
-                Password = "qwerty"
+                UserName = "Nick",
+                PasswordHash = "qwerty"
             };
             context.Users.Add(user);
             User user2 = new User
             {
-                Name = "Jack",
-                Login = "Jack",
-                Password = "qwerty"
+                UserName = "Jack",
+                PasswordHash = "qwerty"
             };
             context.Users.Add(user2);
 
@@ -87,6 +69,6 @@ namespace WebApiTokenUser.DAL
             context.Data.Add(data2);
             context.SaveChanges();
         }
-    }
+    }*/
 }
 

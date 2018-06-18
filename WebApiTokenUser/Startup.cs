@@ -33,6 +33,10 @@ namespace WebApiTokenUser
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<IdentityDatabaseContext>().As<DbContext>().SingleInstance();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
+
+           // builder.RegisterType<CustomUserStore>().As<IUserStore<User, long>>().InstancePerDependency();
+           // builder.RegisterType<IdentityUserManager>().As<UserManager<User, long>>().InstancePerDependency();
+
             builder.RegisterWebApiFilterProvider(config);
 
             var container = builder.Build();
@@ -55,10 +59,6 @@ namespace WebApiTokenUser
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(IdentityDatabaseContext.Create);
             app.CreatePerOwinContext<IdentityUserManager>(IdentityUserManager.Create);
-
-
-            app.UseCookieAuthentication(new CookieAuthenticationOptions());
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Configure the application for OAuth based flow
             var OAuthOptions = new OAuthAuthorizationServerOptions

@@ -21,29 +21,25 @@ namespace WebApiTokenUser.DAL.Migrations
             User user = new User
             {
                 Id = 1,
-                Name = "Nick",
-                Login = "Nick",
-                Password = "qwerty",
+                UserName = "Nick",
+                PasswordHash = "Nick",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 TwoFactorEnabled = true,
                 LockoutEnabled = false,
-                AccessFailedCount = 0,
-                UserName = "Nick"
+                AccessFailedCount = 0
             };
             //    context.Users.Add(user);
             User user2 = new User
             {
                 Id = 2,
-                Name = "Jack",
-                Login = "Jack",
-                Password = "qwerty",
+                UserName = "Jack",
+                PasswordHash = "qwerty",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
                 TwoFactorEnabled = true,
                 LockoutEnabled = false,
-                AccessFailedCount = 0,
-                UserName = "Nick"
+                AccessFailedCount = 0
             };
             //  context.Users.Add(user2);
 
