@@ -8,6 +8,7 @@ using WebApiTokenUser.Entity.Models;
 
 namespace WebApiTokenUser.Services
 {
+    
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private IRepository<User> _userContext;
