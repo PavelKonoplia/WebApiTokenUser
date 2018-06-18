@@ -2,6 +2,7 @@
 using Autofac.Integration.WebApi;
 using BusinessLogic.Interfaces;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
@@ -31,12 +32,21 @@ namespace WebApiTokenUser
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterWebApiFilterProvider(config);
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterType<IdentityDatabaseContext>().As<DbContext>().SingleInstance();
+         //   builder.RegisterType<IdentityDatabaseContext>().As<DbContext>().SingleInstance();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
 
-           // builder.RegisterType<CustomUserStore>().As<IUserStore<User, long>>().InstancePerDependency();
-           // builder.RegisterType<IdentityUserManager>().As<UserManager<User, long>>().InstancePerDependency();
-
+            var x = new IdentityDatabaseContext();
+            builder.Register<IdentityDatabaseContext>(c => x).As<DbContext>().SingleInstance();
+            builder.Register<CustomUserStore>(c => new CustomUserStore(x));
+            builder.Register<IdentityFactoryOptions<IdentityUserManager>>(c => new IdentityFactoryOptions<IdentityUserManager>()
+            {
+                DataProtectionProvider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("WebApiTokenUser")
+            });
+            builder.RegisterType<IdentityUserManager>();
+            /*
+            builder.RegisterType<CustomUserStore>().As<IUserStore<User,long>>().InstancePerLifetimeScope();
+            builder.RegisterType<IdentityUserManager>().AsSelf().InstancePerLifetimeScope();
+            */
             builder.RegisterWebApiFilterProvider(config);
 
             var container = builder.Build();
@@ -57,8 +67,8 @@ namespace WebApiTokenUser
         public void ConfigureAuth(IAppBuilder app, IRepository<User> repository)
         {
             // Configure the db context and user manager to use a single instance per request
-            app.CreatePerOwinContext(IdentityDatabaseContext.Create);
-            app.CreatePerOwinContext<IdentityUserManager>(IdentityUserManager.Create);
+           // app.CreatePerOwinContext(IdentityDatabaseContext.Create);
+         //   app.CreatePerOwinContext<IdentityUserManager>(IdentityUserManager.Create);
 
             // Configure the application for OAuth based flow
             var OAuthOptions = new OAuthAuthorizationServerOptions
