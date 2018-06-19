@@ -4,16 +4,15 @@ using BusinessLogic.Interfaces;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
 using System.Data.Entity;
 using System.Reflection;
 using System.Web.Http;
+using WebApiTokenUser.BLL;
 using WebApiTokenUser.DAL;
 using WebApiTokenUser.Entity.Models;
-using WebApiTokenUser.Services;
 
 
 [assembly: OwinStartup(typeof(WebApiTokenUser.Startup))]
@@ -32,21 +31,16 @@ namespace WebApiTokenUser
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterWebApiFilterProvider(config);
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-         //   builder.RegisterType<IdentityDatabaseContext>().As<DbContext>().SingleInstance();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
 
-            var x = new IdentityDatabaseContext();
-            builder.Register<IdentityDatabaseContext>(c => x).As<DbContext>().SingleInstance();
-            builder.Register<CustomUserStore>(c => new CustomUserStore(x));
-            builder.Register<IdentityFactoryOptions<IdentityUserManager>>(c => new IdentityFactoryOptions<IdentityUserManager>()
-            {
-                DataProtectionProvider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("WebApiTokenUser")
-            });
-            builder.RegisterType<IdentityUserManager>();
-            /*
-            builder.RegisterType<CustomUserStore>().As<IUserStore<User,long>>().InstancePerLifetimeScope();
-            builder.RegisterType<IdentityUserManager>().AsSelf().InstancePerLifetimeScope();
-            */
+           // var x = new IdentityDatabaseContext();
+
+            builder.RegisterType<IdentityDatabaseContext>().As(typeof(DbContext)).SingleInstance();
+            builder.RegisterType<CustomUserStore>().As(typeof(IUserStore<User, long>)).SingleInstance();
+            builder.RegisterType<IdentityUserManager>().SingleInstance();
+
+            builder.RegisterType<IdentityFactoryOptions<IdentityUserManager>>().SingleInstance();
+
             builder.RegisterWebApiFilterProvider(config);
 
             var container = builder.Build();
@@ -59,22 +53,19 @@ namespace WebApiTokenUser
             // end of autofac configure 
 
             WebApiConfig.Register(config);
-            ConfigureAuth(app, container.Resolve<IRepository<User>>());
+            ConfigureAuth(app, container.Resolve<IdentityUserManager>());
             app.UseWebApi(config);
         }
 
 
-        public void ConfigureAuth(IAppBuilder app, IRepository<User> repository)
+        public void ConfigureAuth(IAppBuilder app, IdentityUserManager userManager)
         {
-            // Configure the db context and user manager to use a single instance per request
-           // app.CreatePerOwinContext(IdentityDatabaseContext.Create);
-         //   app.CreatePerOwinContext<IdentityUserManager>(IdentityUserManager.Create);
 
             // Configure the application for OAuth based flow
             var OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/token"),
-                Provider = new ApplicationOAuthProvider(repository),
+                Provider = new ApplicationOAuthProvider(userManager),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true
             };

@@ -98,10 +98,9 @@
     <Compile Include="CustomRoleStore.cs" />
     <Compile Include="CustomUserStore.cs" />
     <Compile Include="IdentityDatabaseContext.cs" />
-    <Compile Include="IdentityUserManager.cs" />
-    <Compile Include="Migrations\201806180855065_initital.cs" />
-    <Compile Include="Migrations\201806180855065_initital.Designer.cs">
-      <DependentUpon>201806180855065_initital.cs</DependentUpon>
+    <Compile Include="Migrations\201806181522374_initital.cs" />
+    <Compile Include="Migrations\201806181522374_initital.Designer.cs">
+      <DependentUpon>201806181522374_initital.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository.cs" />
@@ -122,8 +121,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806180855065_initital.resx">
-      <DependentUpon>201806180855065_initital.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806181522374_initital.resx">
+      <DependentUpon>201806181522374_initital.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

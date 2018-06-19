@@ -263,10 +263,6 @@
       <Project>{6cc027d0-b1af-42a7-ac19-34828d8bbdbb}</Project>
       <Name>WebApiTokenUser.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebApiTokenUser.Services\WebApiTokenUser.Services.csproj">
-      <Project>{425BED22-02B7-4BB1-90D1-7118A59488B5}</Project>
-      <Name>WebApiTokenUser.Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
