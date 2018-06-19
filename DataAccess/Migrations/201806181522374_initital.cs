@@ -86,8 +86,7 @@ namespace WebApiTokenUser.DAL.Migrations
                     })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId);
-            
+                .Index(t => t.UserId);            
         }
         
         public override void Down()

@@ -2,5 +2,7 @@
 
 namespace WebApiTokenUser.Entity.Models
 {
-    public class CustomUserClaim : IdentityUserClaim<long> { }
+    public class CustomUserClaim : IdentityUserClaim<long>
+    {
+    }
 }

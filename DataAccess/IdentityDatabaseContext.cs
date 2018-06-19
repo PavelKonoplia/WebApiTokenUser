@@ -1,20 +1,17 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using WebApiTokenUser.Entity.Models;
 
 namespace WebApiTokenUser.DAL
 {
-
     public class IdentityDatabaseContext : IdentityDbContext<User, CustomRole, long,
         CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
-        public IdentityDatabaseContext() : base("DbConnection") { }
-
-        public DbSet<Data> Data { get; set; }
-
-        static IdentityDatabaseContext()
+        public IdentityDatabaseContext() : base("DbConnection")
         {
         }
+
+        public DbSet<Data> Data { get; set; }
 
         public static IdentityDatabaseContext Create()
         {
@@ -30,4 +27,3 @@ namespace WebApiTokenUser.DAL
         }
     }   
 }
-

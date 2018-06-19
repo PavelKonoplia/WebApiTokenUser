@@ -33,8 +33,6 @@ namespace WebApiTokenUser
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
 
-           // var x = new IdentityDatabaseContext();
-
             builder.RegisterType<IdentityDatabaseContext>().As(typeof(DbContext)).SingleInstance();
             builder.RegisterType<CustomUserStore>().As(typeof(IUserStore<User, long>)).SingleInstance();
             builder.RegisterType<IdentityUserManager>().SingleInstance();

@@ -1,10 +1,6 @@
-﻿using BusinessLogic.Interfaces;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security.OAuth;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using WebApiTokenUser.Entity.Models;
+using Microsoft.Owin.Security.OAuth;
 
 namespace WebApiTokenUser.BLL
 {    
@@ -12,9 +8,9 @@ namespace WebApiTokenUser.BLL
     {
         private IdentityUserManager userManager;
 
-        public ApplicationOAuthProvider(IdentityUserManager _userManager)
+        public ApplicationOAuthProvider(IdentityUserManager userManager)
         {
-            userManager = _userManager;
+            this.userManager = userManager;
         }
 
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
@@ -24,7 +20,7 @@ namespace WebApiTokenUser.BLL
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var entry = userManager.FindAsync(context.UserName, context.Password);
+            var entry = await userManager.FindAsync(context.UserName, context.Password);
 
             if (entry == null)
             {
@@ -35,6 +31,5 @@ namespace WebApiTokenUser.BLL
 
             context.Validated(new ClaimsIdentity(context.Options.AuthenticationType));
         }
-
     }
 }

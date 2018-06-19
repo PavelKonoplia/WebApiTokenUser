@@ -6,7 +6,6 @@ namespace WebApiTokenUser.BLL
 {
     public class IdentityUserManager : UserManager<User, long>
     {
-
         public IdentityUserManager(IUserStore<User, long> store, IdentityFactoryOptions<IdentityUserManager> options)
             : base(store)
         {
@@ -24,8 +23,6 @@ namespace WebApiTokenUser.BLL
                     new DataProtectorTokenProvider<User, long>(
                         dataProtectionProvider.Create("Identity"));
             }
-        }     
-       
+        }           
     }
 }
-

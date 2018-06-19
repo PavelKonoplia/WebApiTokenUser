@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="ApplicationOAuthProvider.cs" />
     <Compile Include="AuthorizeException.cs" />
+    <Compile Include="DataProvider.cs" />
     <Compile Include="IdentityUserManager.cs" />
     <Compile Include="Interfaces\IAuthorization.cs" />
     <Compile Include="Interfaces\IRepository.cs" />

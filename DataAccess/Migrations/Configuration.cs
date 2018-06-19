@@ -17,21 +17,19 @@ namespace WebApiTokenUser.DAL.Migrations
         protected override void Seed(WebApiTokenUser.DAL.IdentityDatabaseContext context)
         {
             //  This method will be called after migrating to the latest version.
-
             User user = new User
             {
                 Id = 1,
                 UserName = "Nick",
                 PasswordHash = "Nick"
             };
-            //    context.Users.Add(user);
+
             User user2 = new User
             {
                 Id = 2,
                 UserName = "Jack",
                 PasswordHash = "qwerty"
             };
-            //  context.Users.Add(user2);
 
             Data data = new Data
             {
@@ -39,8 +37,7 @@ namespace WebApiTokenUser.DAL.Migrations
                 Topic = "Space",
                 Description = "Sun is the star!"
             };
-
-            //  context.Data.Add(data);
+            
             Data data2 = new Data
             {
                 Id = 2,
@@ -48,8 +45,6 @@ namespace WebApiTokenUser.DAL.Migrations
                 Description = "Elephant is biggest animal on the earth."
             };
 
-
-            //  context.Data.Add(data2);
             try
             {
                 // Your code...
@@ -68,20 +63,16 @@ namespace WebApiTokenUser.DAL.Migrations
                 foreach (var eve in e.EntityValidationErrors)
                 {
                     Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
                     foreach (var ve in eve.ValidationErrors)
                     {
                         Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
+
                 throw;
             }
-
-            //context.SaveChanges();
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
-
         }
     }
 }

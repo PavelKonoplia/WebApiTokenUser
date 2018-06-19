@@ -8,29 +8,29 @@ namespace WebApiTokenUser.DAL
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        DbContext _userDataContext;
-        DbSet<T> _dbSet;
+        private DbContext userDataContext;
+        private DbSet<T> dbSet;
 
         public Repository(DbContext dataContext)
         {
-            _userDataContext = dataContext;
-            _dbSet = _userDataContext.Set<T>();
+            this.userDataContext = dataContext;
+            this.dbSet = userDataContext.Set<T>();
         }
 
         public virtual IQueryable<T> GetAll()
         {
-            return _dbSet.AsNoTracking();
+            return this.dbSet.AsNoTracking();
         }
 
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
-            return _dbSet.Where(predicate);
+            return this.dbSet.Where(predicate);
         }
 
         public virtual void Add(T entity)
         {
-            _dbSet.Add(entity);
-            _userDataContext.SaveChanges();
+            this.dbSet.Add(entity);
+            this.userDataContext.SaveChanges();
         }
     }
 }
