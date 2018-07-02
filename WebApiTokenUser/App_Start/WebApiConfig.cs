@@ -1,5 +1,4 @@
 ﻿using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Serialization;
 using System.Web.Http;
 
 namespace WebApiTokenUser
@@ -19,6 +18,7 @@ namespace WebApiTokenUser
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config.EnableCors();
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
@@ -31,10 +31,6 @@ namespace WebApiTokenUser
             //Now set the serializer setting for JsonFormatter to Indented to get Json Formatted data  
             config.Formatters.JsonFormatter.SerializerSettings.Formatting =
                 Newtonsoft.Json.Formatting.Indented;
-
-            //For converting data in Camel Case  
-            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
-                new CamelCasePropertyNamesContractResolver();
         }
     }
 }

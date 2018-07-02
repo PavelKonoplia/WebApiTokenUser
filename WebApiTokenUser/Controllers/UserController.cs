@@ -1,38 +1,29 @@
-﻿using BusinessLogic.Interfaces;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
-using System.Linq;
-using System.Security.Claims;
+﻿using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebApiTokenUser.BLL;
-using WebApiTokenUser.DAL;
 using WebApiTokenUser.Entity.Models;
 
 namespace WebApiTokenUser.Controllers
 {
-
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
-
         private IdentityUserManager userManager;
 
         public UserController(IdentityUserManager _userManager)
         {
             userManager = _userManager;
         }
-
-
+        
         [HttpGet]
         [Route("api/user")]
         public IHttpActionResult Get()
         {
             return Ok(this.userManager.Users);
-
-           // return Ok(_userContext.GetAll());
         }
-
-        [Authorize]
+        
         [HttpGet]
         [Route("api/user/{login}")]
         public async Task<IHttpActionResult> Get(string login)
@@ -45,7 +36,6 @@ namespace WebApiTokenUser.Controllers
             }
 
             return NotFound();
-
         }
 
         [Authorize]
@@ -53,26 +43,6 @@ namespace WebApiTokenUser.Controllers
         {
             return Ok("Authorized");
         }
-        /*
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IHttpActionResult> Login([FromBody]User inputUser)
-        {
-            User user = await UserManager.FindAsync(inputUser.UserName, inputUser.PasswordHash);
-
-            if (user == null)
-            {
-                ModelState.AddModelError("", "Invalid username or password.");
-            }
-            else
-            {
-                ClaimsIdentity ident = await UserManager.CreateIdentityAsync(user,
-                    DefaultAuthenticationTypes.ExternalBearer);
-                return Ok("Success");
-            }
-
-            return Ok(ModelState);
-        }*/
 
         [HttpPost]
         [Route("api/user")]
@@ -82,7 +52,7 @@ namespace WebApiTokenUser.Controllers
             {
                 Id = user.Id,
                 UserName = user.UserName,
-                Email = user.Email == null ? "default@gmail.com" : user.Email
+                Email = user.Email == null ? $"{user.UserName} {user.Id}@gmail.com" : user.Email
             };
 
             IdentityResult addUserResult = await this.userManager.CreateAsync(userData, user.PasswordHash);
@@ -93,8 +63,6 @@ namespace WebApiTokenUser.Controllers
             }
 
             return Created("api/user", user);
-            
-            //_userContext.Add(user);
         }
     }
 }

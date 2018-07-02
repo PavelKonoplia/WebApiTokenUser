@@ -1,13 +1,17 @@
-﻿using System.Web.Http;
-using WebApiTokenUser.BLL;
+﻿using BusinessLogic.Interfaces;
+using System.Web.Http;
+using System.Web.Http.Cors;
+using WebApiTokenUser.Entity.Models;
 
 namespace WebApiTokenUser.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DataController : ApiController
     {
-        DataProvider dataProvider;
 
-        public DataController(DataProvider dataProvider)
+        IRepository<Data> dataProvider;
+
+        public DataController(IRepository<Data> dataProvider)
         {
             this.dataProvider = dataProvider;
         }
@@ -22,7 +26,7 @@ namespace WebApiTokenUser.Controllers
         
         public IHttpActionResult Get(int id)
         {
-            return Ok(dataProvider.GetBy(d => d.Id == id));
+            return Ok(dataProvider.FindBy(d => d.Id == id));
         }
     }
 }

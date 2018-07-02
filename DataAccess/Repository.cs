@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -17,14 +18,14 @@ namespace WebApiTokenUser.DAL
             this.dbSet = userDataContext.Set<T>();
         }
 
-        public virtual IQueryable<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
             return this.dbSet.AsNoTracking();
         }
 
-        public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
+        public T FindBy(Expression<Func<T, bool>> predicate)
         {
-            return this.dbSet.Where(predicate);
+            return this.dbSet.Where(predicate).FirstOrDefault();
         }
 
         public virtual void Add(T entity)

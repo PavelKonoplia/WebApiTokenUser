@@ -13,7 +13,7 @@ namespace WebApiTokenUser.Entity.Models
             // CookieAuthenticationOptions.AuthenticationType 
             var userIdentity = await manager.CreateIdentityAsync(
                 this, DefaultAuthenticationTypes.ExternalBearer);
-
+            
             return userIdentity;
         }
     }

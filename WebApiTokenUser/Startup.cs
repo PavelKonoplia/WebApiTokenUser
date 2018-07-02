@@ -26,20 +26,19 @@ namespace WebApiTokenUser
 
             // autofac configuration zone
 
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+
             var builder = new ContainerBuilder();
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterWebApiFilterProvider(config);
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
 
             builder.RegisterType<IdentityDatabaseContext>().As(typeof(DbContext)).SingleInstance();
             builder.RegisterType<CustomUserStore>().As(typeof(IUserStore<User, long>)).SingleInstance();
             builder.RegisterType<IdentityUserManager>().SingleInstance();
-
-            builder.RegisterType<IdentityFactoryOptions<IdentityUserManager>>().SingleInstance();
-
-            builder.RegisterWebApiFilterProvider(config);
+            builder.RegisterType<IdentityFactoryOptions<IdentityUserManager>>().SingleInstance(); 
+            
 
             var container = builder.Build();
 
@@ -62,7 +61,8 @@ namespace WebApiTokenUser
             // Configure the application for OAuth based flow
             var OAuthOptions = new OAuthAuthorizationServerOptions
             {
-                TokenEndpointPath = new PathString("/token"),
+
+                TokenEndpointPath = new PathString("/api/token"),
                 Provider = new ApplicationOAuthProvider(userManager),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true
